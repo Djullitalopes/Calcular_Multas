@@ -9,6 +9,15 @@ def calcular_multa_localidade(velocidade):
         return 0
 
 
+def calcular_multa_fora_localidade(velocidade):
+    if velocidade >= 120:
+        return 120
+    elif velocidade > 90:
+        return 60
+    else:
+        return 0
+
+
 def verificar_velocidade():
     print("Verificador de Velocidade")
     
@@ -50,6 +59,18 @@ def verificar_velocidade():
             multa = calcular_multa_localidade(velocidade)
             if multa > 0:
                 print(f"Multa a pagar: {multa}€")
+            else:
+                print("Sem multa.")
+
+        elif zona == "Fora da localidade":
+            multa = calcular_multa_fora_localidade(velocidade)
+            if multa > 0:
+                print(f"Multa a pagar: {multa}€")
+            else:
+                print("Sem multa.")
+
+        else:
+            print("Multa para esta zona ainda não implementada.")
     else:
         print("Está dentro do limite permitido.")
 
