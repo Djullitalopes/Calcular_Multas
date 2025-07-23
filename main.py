@@ -1,3 +1,14 @@
+def calcular_multa_localidade(velocidade):
+    if velocidade >= 120:
+        return 320
+    elif velocidade >= 90:
+        return 120
+    elif velocidade > 50:
+        return 60
+    else:
+        return 0
+
+
 def verificar_velocidade():
     print("Verificador de Velocidade")
     
@@ -18,24 +29,29 @@ def verificar_velocidade():
         limite = 120
         zona = "Autoestrada"
     else:
-        print(" Opção inválida.")
+        print("Opção inválida.")
         return
 
     try:
         velocidade = float(input(f"\nIntroduza a velocidade do carro na {zona}: "))
     except ValueError:
-        print(" Por favor, insira um número válido para a velocidade.")
+        print("Por favor, insira um número válido para a velocidade.")
         return
 
-
     print(f"\nZona: {zona}")
-    print(f" Velocidade registada: {velocidade:.1f} km/h")
-    print(f" Limite permitido: {limite} km/h")
+    print(f"Velocidade registada: {velocidade:.1f} km/h")
+    print(f"Limite permitido: {limite} km/h")
 
     if velocidade > limite:
         excesso = velocidade - limite
-        print(f" Excedeu o limite de velocidade em {excesso:.1f} km/h. Pode receber uma multa!")
+        print(f"Excedeu o limite de velocidade em {excesso:.1f} km/h. vais receber uma multa!")
+
+        if zona == "Localidade":
+            multa = calcular_multa_localidade(velocidade)
+            if multa > 0:
+                print(f"Multa a pagar: {multa}€")
     else:
         print("Está dentro do limite permitido.")
+
 
 verificar_velocidade()
