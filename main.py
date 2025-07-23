@@ -18,6 +18,17 @@ def calcular_multa_fora_localidade(velocidade):
         return 0
 
 
+def calcular_multa_Autoestrada(velocidade):
+    if velocidade >= 175:
+        return 360
+    elif velocidade >= 150:
+        return 120
+    elif velocidade > 120:
+        return 60
+    else:
+        return 0
+
+
 def verificar_velocidade():
     print("Verificador de Velocidade")
     
@@ -57,22 +68,26 @@ def verificar_velocidade():
 
         if zona == "Localidade":
             multa = calcular_multa_localidade(velocidade)
-            if multa > 0:
-                print(f"Multa a pagar: {multa}€")
-            else:
-                print("Sem multa.")
-
         elif zona == "Fora da localidade":
             multa = calcular_multa_fora_localidade(velocidade)
-            if multa > 0:
-                print(f"Multa a pagar: {multa}€")
-            else:
-                print("Sem multa.")
-
+        elif zona == "Autoestrada":
+            multa = calcular_multa_Autoestrada(velocidade)
         else:
-            print("Multa para esta zona ainda não implementada.")
+            multa = 0
+
+        if multa > 0:
+            print(f"Multa a pagar: {multa}€")
+        else:
+            print("Sem multa.")
     else:
         print("Está dentro do limite permitido.")
 
 
-verificar_velocidade()
+
+while True:
+    verificar_velocidade()
+    continuar = input("\nDeseja fazer outro registo? (s/n): ").lower()
+    if continuar != 's':
+        print("Programa terminado.")
+        break
+
